@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class DNASequence implements Serializable{
+public class DNA implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -18,11 +18,11 @@ public class DNASequence implements Serializable{
 	private String isSimio;
 	private String sequencia;
 	
-	public DNASequence() {
+	public DNA() {
 		super();
 	}
 
-	public DNASequence(Long id, String isSimio) {
+	public DNA(Long id, String isSimio) {
 		super();
 		Id = id;
 		this.isSimio = isSimio;
@@ -47,7 +47,7 @@ public class DNASequence implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DNASequence other = (DNASequence) obj;
+		DNA other = (DNA) obj;
 		return Objects.equals(Id, other.Id);
 	}
 	
