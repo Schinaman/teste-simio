@@ -14,7 +14,7 @@ public class DNASequence implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String Id;
+	private Long Id;
 	private String isSimio;
 	private String sequencia;
 	
@@ -22,14 +22,14 @@ public class DNASequence implements Serializable{
 		super();
 	}
 
-	public DNASequence(String id, String isSimio) {
+	public DNASequence(Long id, String isSimio) {
 		super();
 		Id = id;
 		this.isSimio = isSimio;
 	}
 
 
-	public String getId() {
+	public Long getId() {
 		return Id;
 	}
 

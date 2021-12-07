@@ -13,7 +13,7 @@ public class DNAResource {
 	
 	@GetMapping
 	public ResponseEntity<DNASequence> retornaSequencia(){
-		DNASequence seq = new DNASequence("1", "x");
+		DNASequence seq = new DNASequence(1L, "x");
 		return ResponseEntity.ok().body(seq);
 	}
 }
