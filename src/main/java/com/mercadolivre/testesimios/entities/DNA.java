@@ -1,8 +1,11 @@
 package com.mercadolivre.testesimios.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,27 +20,41 @@ public class DNA implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	private String isSimio;
-	private String sequencia;
-	//private List<String> seq = new ArrayList<>();
+	private boolean isSimio;
+	@ElementCollection
+	private List<String> dna = new ArrayList<>();
 	
 	
 	public DNA() {
 		super();
 	}
-
-
-
+	public DNA(List<String> dna) {
+		super();
+		this.dna = dna;
+	}
+	public DNA(List<String> dna, boolean isSimio) { //teste apagar
+		super();
+		this.dna = dna;
+		this.isSimio = isSimio;
+	}
+	
+	
+	public boolean isSimio() {
+		return isSimio;
+	}
+	public void setSimio(boolean isSimio) {
+		this.isSimio = isSimio;
+	}
 	public Long getId() {
 		return Id;
 	}
-
-
+	public List<String> getDna() {
+		return dna;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(Id);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

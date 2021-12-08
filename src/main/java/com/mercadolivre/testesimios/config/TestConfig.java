@@ -19,8 +19,11 @@ public class TestConfig implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception { 
-		DNA d1 = new DNA();
-		DNA d2 = new DNA();
-		dnaRepository.saveAll(Arrays.asList(d1,d2));
+		//DNA d1 = new DNA();
+		DNA d1 = new DNA(Arrays.asList("ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"));
+		DNA d2 = new DNA(Arrays.asList("ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"));
+		DNA d3 = new DNA(Arrays.asList("ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"), true);
+		DNA d4 = new DNA(Arrays.asList("ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"), true);
+		dnaRepository.saveAll(Arrays.asList(d1,d2,d3,d4));
 	}
 }

@@ -27,7 +27,7 @@ public class DNAResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@RequestMapping (value = "/simian")
+	@RequestMapping (value = "/s")
 	@PostMapping
 	public ResponseEntity<DNA> insert(@RequestBody DNA obj){
 		obj = service.insert(obj);
