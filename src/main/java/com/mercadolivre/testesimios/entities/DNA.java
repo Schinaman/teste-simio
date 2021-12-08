@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table (name = "tb_dna")
 public class DNA implements Serializable{
 	private static final long serialVersionUID = 1L;
 
@@ -17,16 +19,13 @@ public class DNA implements Serializable{
 	private Long Id;
 	private String isSimio;
 	private String sequencia;
+	//private List<String> seq = new ArrayList<>();
+	
 	
 	public DNA() {
 		super();
 	}
 
-	public DNA(Long id, String isSimio) {
-		super();
-		Id = id;
-		this.isSimio = isSimio;
-	}
 
 
 	public Long getId() {

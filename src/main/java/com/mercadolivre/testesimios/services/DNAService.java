@@ -17,4 +17,8 @@ public class DNAService {
 	public List<DNA> findAll(){
 		return repository.findAll();
 	}
+	
+	public DNA insert(DNA obj) {
+		return repository.save(obj);
+	}
 }
