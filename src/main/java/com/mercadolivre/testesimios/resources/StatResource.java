@@ -12,20 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mercadolivre.testesimios.entities.DNA;
 import com.mercadolivre.testesimios.entities.Stats;
-import com.mercadolivre.testesimios.services.DNAService;
+import com.mercadolivre.testesimios.services.StatService;
 
 @RestController
-public class DNAResource {
+public class StatResource {
 
 	
 	@Autowired
-	private DNAService service;
+	private StatService service;
 	
-	@RequestMapping (value = "/simian")
-	@PostMapping
-	public ResponseEntity<DNA> insert(@RequestBody DNA obj){
-		obj = service.insert(obj);
-		return ResponseEntity.ok().body(obj);
+	
+	@RequestMapping (value = "/stats")
+	@GetMapping
+	public ResponseEntity<Stats> getStats(){
+		return ResponseEntity.ok().body(service.getStats());
 	}
+	
 	
 }

@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table (name = "tb_dna")
 public class DNA implements Serializable{
@@ -28,16 +30,12 @@ public class DNA implements Serializable{
 	public DNA() {
 		super();
 	}
+	
 	public DNA(List<String> dna) {
 		super();
-		this.dna = dna;
+		this.dna = dna;	
 	}
-	public DNA(List<String> dna, boolean isSimio) { //teste apagar
-		super();
-		this.dna = dna;
-		this.isSimio = isSimio;
-	}
-	
+
 	
 	public boolean isSimio() {
 		return isSimio;
@@ -51,6 +49,8 @@ public class DNA implements Serializable{
 	public List<String> getDna() {
 		return dna;
 	}
+	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(Id);
@@ -66,7 +66,6 @@ public class DNA implements Serializable{
 		DNA other = (DNA) obj;
 		return Objects.equals(Id, other.Id);
 	}
-	
 	
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mercadolivre.testesimios.entities.DNA;
+import com.mercadolivre.testesimios.entities.Stats;
 import com.mercadolivre.testesimios.repositories.DNARepository;
 
 @Service
