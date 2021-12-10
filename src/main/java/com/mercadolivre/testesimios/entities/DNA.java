@@ -12,11 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table (name = "tb_dna")
-public class DNA implements Serializable{
+@Table(name = "tb_dna")
+public class DNA implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,40 +23,37 @@ public class DNA implements Serializable{
 	@ElementCollection
 	private List<String> dna = new ArrayList<>();
 	private boolean simian;
-	
-	
+
 	public DNA() {
 		super();
-	}
-	
-	public DNA(List<String> dna) {
-		super();
-		this.dna = dna;
-		if ((checkDiagonal() || checkHorizontal() || checkVertical()) == true) this.simian = true;
+		this.simian = isSimian();
 	}
 
-	
+	public DNA(List<String> dna) {
+		super();
+	}
+
 	public Long getId() {
 		return Id;
 	}
+
 	public List<String> getDna() {
 		return dna;
 	}
-	
+
 	public boolean isSimian() {
-		return ((checkDiagonal() || checkHorizontal() || checkVertical()) == true);
+		return ((hasMainDiagonalCombination() || hasSecondDiagonalCombination() || hasVerticalCombination()|| hasHorizontalCombination()));
 	}
-	
+
 	public void setSimian(boolean simian) {
 		this.simian = simian;
 	}
-	
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(Id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -70,51 +65,59 @@ public class DNA implements Serializable{
 		DNA other = (DNA) obj;
 		return Objects.equals(Id, other.Id);
 	}
-	
-	
-	private boolean checkDiagonal() {
+
+	@Override
+	public String toString() {
+		return "DNA [Id=" + Id + ", dna=" + dna + ", simian=" + simian + "]";
+	}
+
+	private boolean hasMainDiagonalCombination() {
 		for (int j = 3; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
-				if (dna.get(i).charAt(j) == dna.get(i - 1).charAt(j - 1)) {
-					if (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j - 2)) {
-						if (dna.get(i).charAt(j) == dna.get(i - 3).charAt(j - 3)) {
-							return true;
-						}
-					}
-				}
+				if ((dna.get(i).charAt(j) == dna.get(i - 1).charAt(j - 1))
+						&& (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j - 2))
+						&& (dna.get(i).charAt(j) == dna.get(i - 3).charAt(j - 3)))
+					return true;
 			}
 		}
 		return false;
-	}
-	private boolean checkHorizontal() {
-		for (int j = 0; j < dna.size(); j++) {
-			for (int i = 3; i < dna.size(); i++) {
-				if (dna.get(i).charAt(j) == dna.get(i - 1).charAt(j)) {
-					if (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j)) {
-						if (dna.get(i).charAt(j) == dna.get(i - 3).charAt(j)) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
-	}
-	private boolean checkVertical() {
-		for (int j = 0; j < dna.size(); j++) {
-			for (int i = 3; i < dna.size(); i++) {
-				if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 1)) {
-					if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 2)) {
-						if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 3)) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-	return false;
 	}
 	
+	private boolean hasSecondDiagonalCombination() {
+		for (int j = 0; j < dna.size()-3; j++) {
+			for (int i = 0; i < dna.size()-3; i++) {
+				if ((dna.get(i).charAt(j) == dna.get(i + 1).charAt(j + 1))
+						&& (dna.get(i).charAt(j) == dna.get(i + 2).charAt(j + 2))
+						&& (dna.get(i).charAt(j) == dna.get(i + 3).charAt(j + 3)))
+					return true;
+			}
+		}
+		return false;
+	}
 
-	
+	private boolean hasHorizontalCombination() {
+		for (int j = 0; j < dna.size(); j++) {
+			for (int i = 3; i < dna.size(); i++) {
+				if ((dna.get(i).charAt(j) == dna.get(i - 1).charAt(j))
+						&& (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j))
+						&& (dna.get(i).charAt(j) == dna.get(i - 3).charAt(j))) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean hasVerticalCombination() {
+		for (int j = 0; j < dna.size(); j++) {
+			for (int i = 3; i < dna.size(); i++) {
+				if ((dna.get(j).charAt(i) == dna.get(j).charAt(i - 1))
+						&& (dna.get(j).charAt(i) == dna.get(j).charAt(i - 2))
+						&& (dna.get(j).charAt(i) == dna.get(j).charAt(i - 3)))
+					return true;
+			}
+		}
+		return false;
+	}
+
 }
