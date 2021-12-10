@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table (name = "tb_dna")
@@ -22,29 +22,22 @@ public class DNA implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	private boolean isSimio;
 	@ElementCollection
 	private List<String> dna = new ArrayList<>();
+	private boolean simian;
 	
 	
 	public DNA() {
 		super();
-		if ((checkDiagonal() || checkHorizontal() || checkVertical()) == true) this.isSimio = true;
 	}
 	
 	public DNA(List<String> dna) {
 		super();
 		this.dna = dna;
-		if ((checkDiagonal() || checkHorizontal() || checkVertical()) == true) this.isSimio = true;
+		if ((checkDiagonal() || checkHorizontal() || checkVertical()) == true) this.simian = true;
 	}
 
 	
-	public boolean isSimio() {
-		return isSimio;
-	}
-	public void setSimio(boolean isSimio) {
-		this.isSimio = isSimio;
-	}
 	public Long getId() {
 		return Id;
 	}
@@ -52,11 +45,20 @@ public class DNA implements Serializable{
 		return dna;
 	}
 	
+	public boolean isSimian() {
+		return ((checkDiagonal() || checkHorizontal() || checkVertical()) == true);
+	}
+	
+	public void setSimian(boolean simian) {
+		this.simian = simian;
+	}
+	
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(Id);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -71,7 +73,7 @@ public class DNA implements Serializable{
 	
 	
 	private boolean checkDiagonal() {
-		outer: for (int j = 3; j < dna.size(); j++) {
+		for (int j = 3; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
 				if (dna.get(i).charAt(j) == dna.get(i - 1).charAt(j - 1)) {
 					if (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j - 2)) {
@@ -84,14 +86,12 @@ public class DNA implements Serializable{
 		}
 		return false;
 	}
-
 	private boolean checkHorizontal() {
-		outer: for (int j = 0; j < dna.size(); j++) {
+		for (int j = 0; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
 				if (dna.get(i).charAt(j) == dna.get(i - 1).charAt(j)) {
 					if (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j)) {
 						if (dna.get(i).charAt(j) == dna.get(i - 3).charAt(j)) {
-							System.out.println(" " +  dna.get(i - 3).charAt(j) +  dna.get(i - 2).charAt(j) +  dna.get(i - 1).charAt(j) +  dna.get(i ).charAt(j));
 							return true;
 						}
 					}
@@ -100,14 +100,12 @@ public class DNA implements Serializable{
 		}
 		return false;
 	}
-
 	private boolean checkVertical() {
-		outer: for (int j = 0; j < dna.size(); j++) {
+		for (int j = 0; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
 				if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 1)) {
 					if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 2)) {
 						if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 3)) {
-							System.out.println(" " + dna.get(j).charAt(i-3) + dna.get(j).charAt(i - 2) + dna.get(j).charAt(i - 1) + dna.get(j).charAt(i - 0));
 							return true;
 						}
 					}
@@ -116,5 +114,7 @@ public class DNA implements Serializable{
 		}
 	return false;
 	}
+	
+
 	
 }
