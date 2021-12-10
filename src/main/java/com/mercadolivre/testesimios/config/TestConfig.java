@@ -26,4 +26,7 @@ public class TestConfig implements CommandLineRunner {
 		DNA d4 = new DNA(Arrays.asList("ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"));
 		dnaRepository.saveAll(Arrays.asList(d1,d2,d3,d4));
 	}
+	
+
+
 }

@@ -29,11 +29,13 @@ public class DNA implements Serializable{
 	
 	public DNA() {
 		super();
+		if ((checkDiagonal() || checkHorizontal() || checkVertical()) == true) this.isSimio = true;
 	}
 	
 	public DNA(List<String> dna) {
 		super();
-		this.dna = dna;	
+		this.dna = dna;
+		if ((checkDiagonal() || checkHorizontal() || checkVertical()) == true) this.isSimio = true;
 	}
 
 	
@@ -67,5 +69,52 @@ public class DNA implements Serializable{
 		return Objects.equals(Id, other.Id);
 	}
 	
+	
+	private boolean checkDiagonal() {
+		outer: for (int j = 3; j < dna.size(); j++) {
+			for (int i = 3; i < dna.size(); i++) {
+				if (dna.get(i).charAt(j) == dna.get(i - 1).charAt(j - 1)) {
+					if (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j - 2)) {
+						if (dna.get(i).charAt(j) == dna.get(i - 3).charAt(j - 3)) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean checkHorizontal() {
+		outer: for (int j = 0; j < dna.size(); j++) {
+			for (int i = 3; i < dna.size(); i++) {
+				if (dna.get(i).charAt(j) == dna.get(i - 1).charAt(j)) {
+					if (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j)) {
+						if (dna.get(i).charAt(j) == dna.get(i - 3).charAt(j)) {
+							System.out.println(" " +  dna.get(i - 3).charAt(j) +  dna.get(i - 2).charAt(j) +  dna.get(i - 1).charAt(j) +  dna.get(i ).charAt(j));
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private boolean checkVertical() {
+		outer: for (int j = 0; j < dna.size(); j++) {
+			for (int i = 3; i < dna.size(); i++) {
+				if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 1)) {
+					if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 2)) {
+						if (dna.get(j).charAt(i) == dna.get(j).charAt(i - 3)) {
+							System.out.println(" " + dna.get(j).charAt(i-3) + dna.get(j).charAt(i - 2) + dna.get(j).charAt(i - 1) + dna.get(j).charAt(i - 0));
+							return true;
+						}
+					}
+				}
+			}
+		}
+	return false;
+	}
 	
 }
