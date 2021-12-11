@@ -31,7 +31,11 @@ public class DNA implements Serializable {
 
 	public DNA(List<String> dna) {
 		super();
+		this.dna = dna;
+		//this.simian = isSimian();
 	}
+
+
 
 	public Long getId() {
 		return Id;
@@ -42,7 +46,8 @@ public class DNA implements Serializable {
 	}
 
 	public boolean isSimian() {
-		return ((hasMainDiagonalCombination() || hasSecondDiagonalCombination() || hasVerticalCombination()|| hasHorizontalCombination()));
+		return ((hasMainDiagonalCombination() || hasSecondDiagonalCombination() || hasVerticalCombination()
+				|| hasHorizontalCombination()));
 	}
 
 	public void setSimian(boolean simian) {
@@ -71,7 +76,7 @@ public class DNA implements Serializable {
 		return "DNA [Id=" + Id + ", dna=" + dna + ", simian=" + simian + "]";
 	}
 
-	private boolean hasMainDiagonalCombination() {
+	public boolean hasMainDiagonalCombination() {
 		for (int j = 3; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
 				if ((dna.get(i).charAt(j) == dna.get(i - 1).charAt(j - 1))
@@ -82,10 +87,10 @@ public class DNA implements Serializable {
 		}
 		return false;
 	}
-	
-	private boolean hasSecondDiagonalCombination() {
-		for (int j = 0; j < dna.size()-3; j++) {
-			for (int i = 0; i < dna.size()-3; i++) {
+
+	public boolean hasSecondDiagonalCombination() {
+		for (int j = 0; j < dna.size() - 3; j++) {
+			for (int i = 0; i < dna.size() - 3; i++) {
 				if ((dna.get(i).charAt(j) == dna.get(i + 1).charAt(j + 1))
 						&& (dna.get(i).charAt(j) == dna.get(i + 2).charAt(j + 2))
 						&& (dna.get(i).charAt(j) == dna.get(i + 3).charAt(j + 3)))
@@ -95,7 +100,7 @@ public class DNA implements Serializable {
 		return false;
 	}
 
-	private boolean hasHorizontalCombination() {
+	public boolean hasHorizontalCombination() {
 		for (int j = 0; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
 				if ((dna.get(i).charAt(j) == dna.get(i - 1).charAt(j))
@@ -108,7 +113,7 @@ public class DNA implements Serializable {
 		return false;
 	}
 
-	private boolean hasVerticalCombination() {
+	public boolean hasVerticalCombination() {
 		for (int j = 0; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
 				if ((dna.get(j).charAt(i) == dna.get(j).charAt(i - 1))
