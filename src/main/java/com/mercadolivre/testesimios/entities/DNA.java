@@ -23,16 +23,14 @@ public class DNA implements Serializable {
 	@ElementCollection
 	private List<String> dna = new ArrayList<>();
 	private boolean simian;
-
+	
 	public DNA() {
 		super();
-		this.simian = isSimian();
 	}
 
 	public DNA(List<String> dna) {
 		super();
 		this.dna = dna;
-		//this.simian = isSimian();
 	}
 
 	public Long getId() {
@@ -80,9 +78,6 @@ public class DNA implements Serializable {
 				if ((dna.get(i).charAt(j) == dna.get(i + 1).charAt(j - 1))
 						&& (dna.get(i).charAt(j) == dna.get(i + 2).charAt(j - 2))
 						&& (dna.get(i).charAt(j) == dna.get(i + 3).charAt(j - 3))) {
-//					System.out.println(" hasMainDiagonalCombination(): " + dna.get(i ).charAt(j) + " "
-//							+ dna.get(i + 1).charAt(j - 1) + " " + dna.get(i + 2).charAt(j - 2) + " " 
-//							+ dna.get(i+3).charAt(j-3) + " AQUI?");
 					return true;
 				}
 
@@ -97,9 +92,6 @@ public class DNA implements Serializable {
 				if ((dna.get(i).charAt(j) == dna.get(i + 1).charAt(j + 1))
 						&& (dna.get(i).charAt(j) == dna.get(i + 2).charAt(j + 2))
 						&& (dna.get(i).charAt(j) == dna.get(i + 3).charAt(j + 3))) {
-//					System.out.println(" hasSecondDiagonalCombination(): " + dna.get(i).charAt(j) + " "
-//							+ dna.get(i + 1).charAt(j + 1) + " " + dna.get(i + 2).charAt(j + 2) + " "
-//							+ dna.get(i + 3).charAt(j + 3));
 					return true;
 				}
 			}

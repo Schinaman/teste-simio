@@ -19,7 +19,6 @@ public class Stats {
 	private  int count_human_dna=0;
 	private double ratio=0;
 	
-	
 	public Stats() {
 		super();
 	}

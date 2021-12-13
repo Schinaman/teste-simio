@@ -1,72 +1,81 @@
 package com.mercadolivre.testesimios.entities;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class DNAUtils {
 
-	String[] sequencia = {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
+public static boolean isSimian(String[] dna) {
+	char dnaTable[][] = mountDnaTable(dna);
+	printTable(dnaTable);
+	return hasHorizontalCombination(dnaTable) || hasSecondDiagonalCombination(dnaTable) 
+			|| hasVerticalCombination(dnaTable) || hasMainDiagonalCombination(dnaTable);
+}
 
-	public void teste(){
-		isSimian(sequencia);
-		
+	public static boolean hasHorizontalCombination(char[][] dnaTable) {
+		for (char[] dna : dnaTable) {
+			for (int j = 0; j < dna.length - 3; j++) {
+				if (dna[j] == dna[j + 1] && dna[j] == dna[j + 2] && dna[j] == dna[j + 3])
+					return true;
+			}
+		}
+		return false;
 	}
 
-	public boolean isSimian(String[] dna) {
-		return ((checkDiagonal(dna) || checkHorizontal(dna) || checkVertical(dna)) == true);
-	}
-
-	private boolean checkDiagonal(String[] dna) {
-		List<String> d = Arrays.asList(dna);
-		for (int j = 3; j < d.size(); j++) {
-			for (int i = 3; i < d.size(); i++) {
-				if (d.get(i).charAt(j) == d.get(i - 1).charAt(j - 1)) {
-					if (d.get(i).charAt(j) == d.get(i - 2).charAt(j - 2)) {
-						if (d.get(i).charAt(j) == d.get(i - 3).charAt(j - 3)) {
-							return true;
-						}
-					}
+	public static boolean hasVerticalCombination(char[][] dnaTable) {
+		for (int i = 0; i < dnaTable.length; i++) {
+			for (int j = 0; j < dnaTable[i].length - 3; j++) {
+				if (dnaTable[j][i] == dnaTable[j + 1][i] && dnaTable[j][i] == dnaTable[j + 2][i]
+						&& dnaTable[j][i] == dnaTable[j + 3][i]) {
+					return true;
 				}
 			}
 		}
 		return false;
 	}
 
-	private boolean checkHorizontal(String[] dna) {
-		List<String> d = Arrays.asList(dna);
-		for (int j = 0; j < d.size(); j++) {
-			for (int i = 3; i < d.size(); i++) {
-				if (d.get(i).charAt(j) == d.get(i - 1).charAt(j)) {
-					if (d.get(i).charAt(j) == d.get(i - 2).charAt(j)) {
-						if (d.get(i).charAt(j) == d.get(i - 3).charAt(j)) {
-							System.out.println(" " + d.get(i - 3).charAt(j) + d.get(i - 2).charAt(j)
-									+ d.get(i - 1).charAt(j) + d.get(i).charAt(j));
-							return true;
-						}
-					}
+	public static boolean hasMainDiagonalCombination(char[][] dnaTable) {
+		for (int i = 0; i < dnaTable.length - 3; i++) {
+			for (int j = 0; j < dnaTable[i].length - 3; j++) {
+				if (dnaTable[i][j] == dnaTable[i + 1][j + 1] && dnaTable[i][j] == dnaTable[i + 2][j + 2]
+						&& dnaTable[i][j] == dnaTable[i + 3][j + 3]) {
+					System.out.println();
+					return true;
 				}
 			}
 		}
 		return false;
 	}
 
-	private boolean checkVertical(String[] dna) {
-		List<String> d = Arrays.asList(dna);
-		for (int j = 0; j < d.size(); j++) {
-			for (int i = 3; i < d.size(); i++) {
-				if (d.get(j).charAt(i) == d.get(j).charAt(i - 1)) {
-					if (d.get(j).charAt(i) == d.get(j).charAt(i - 2)) {
-						if (d.get(j).charAt(i) == d.get(j).charAt(i - 3)) {
-							System.out.println(" " + d.get(j).charAt(i - 3) + d.get(j).charAt(i - 2)
-									+ d.get(j).charAt(i - 1) + d.get(j).charAt(i - 0));
-							return true;
-						}
-					}
+	public static boolean hasSecondDiagonalCombination(char[][] dnaTable) {
+		for (int i = 0; i < dnaTable.length - 3; i++) {
+			for (int j = dnaTable[i].length - 1; j > 2; j--) {
+				System.out.println(dnaTable[i][j] + " " + dnaTable[i + 1][j - 1] + " " + dnaTable[i + 2][j - 2] + " "
+						+ dnaTable[i + 3][j - 3]);
+				if (dnaTable[i][j] == dnaTable[i + 1][j - 1] && dnaTable[i][j] == dnaTable[i + 2][j - 2]
+						&& dnaTable[i][j] == dnaTable[i + 3][j - 3]) {
+					return true;
 				}
 			}
 		}
 		return false;
 	}
 
-	
+	public static char[][] mountDnaTable(String[] dna) {
+		char[][] dnaTable = new char[dna.length][];
+		for (int i = 0; i < dna.length; i++) {
+			dnaTable[i] = new char[dna[i].length()];
+			for (int j = 0; j < dnaTable[i].length; j++) {
+				dnaTable[i][j] = dna[i].charAt(j);
+			}
+		}
+		return dnaTable;
+	}
+
+	public static void printTable(char[][] dnaTable) {
+		for (char[] dna : dnaTable) {
+			for (int j = 0; j < dna.length; j++) {
+				System.out.print(dna[j] + "  ");
+			}
+			System.out.print("\n");
+		}
+	}
+
 }

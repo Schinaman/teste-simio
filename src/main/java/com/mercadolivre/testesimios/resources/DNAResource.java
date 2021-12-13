@@ -14,7 +14,7 @@ import com.mercadolivre.testesimios.services.DNAService;
 
 @RestController
 public class DNAResource {
-
+	
 	@Autowired
 	private DNAService service;
 
@@ -22,7 +22,6 @@ public class DNAResource {
 	@PostMapping
 	public ResponseEntity<DNA> insert(@RequestBody DNA obj) {
 		obj = service.insert(obj);
-		System.out.println(obj.isSimian() + " BLABLABLA");
 		if (obj.isSimian())
 			return ResponseEntity.ok().body(obj);
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(obj);

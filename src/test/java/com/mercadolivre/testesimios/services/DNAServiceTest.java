@@ -19,7 +19,7 @@ class DNAServiceTest {
 		DNARequestException exception = Assertions.assertThrows(DNARequestException.class, () -> dnaService.insert(dna));
 		Assertions.assertEquals("EXCEPTION: Dimensão da Matriz menor que 4", exception.getMessage());
 	}
-	
+
 	@Test
 	void testThrowsRequestExceptionNotSquaredMatrix() {
 		DNAService dnaService = new DNAService();

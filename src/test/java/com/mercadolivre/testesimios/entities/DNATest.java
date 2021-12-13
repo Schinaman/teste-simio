@@ -9,18 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class DNATest {
-
-	//Se não for passado nenhum valor -> retorna erro?
-	
-	//Dado uma matriz quadrada com valores aleatórios CTAG precisa -> não pode dar exception
-	
-	//Preparação do Cenario
-	//Execuçao do Cenario
-	//Verificação do Resultado
-	
-	//AssertEquals = verifica se resultado esperado está igual ao resultado obtido
-	//AssertThows = se lançou uma exceção especifica
-	//AssertTrue | False = verifica se o resultado foi true ou false;
 	
 //	Primeiro TesteBasico:
 //		["ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"] = Retorna true

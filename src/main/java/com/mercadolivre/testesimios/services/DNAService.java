@@ -17,7 +17,6 @@ public class DNAService {
 
 	public List<DNA> findAll() {
 		return repository.findAll();
-
 	}
 
 	public DNA insert(DNA obj) {
@@ -41,7 +40,7 @@ public class DNAService {
 				}
 			}
 		}
-
+		
 		obj.setSimian(obj.isSimian());
 		return repository.save(obj);
 	}
