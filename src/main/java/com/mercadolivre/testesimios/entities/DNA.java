@@ -35,8 +35,6 @@ public class DNA implements Serializable {
 		//this.simian = isSimian();
 	}
 
-
-
 	public Long getId() {
 		return Id;
 	}
@@ -46,8 +44,8 @@ public class DNA implements Serializable {
 	}
 
 	public boolean isSimian() {
-		return ((hasMainDiagonalCombination() || hasSecondDiagonalCombination() || hasVerticalCombination()
-				|| hasHorizontalCombination()));
+		return ( hasSecondDiagonalCombination() || hasMainDiagonalCombination() ||  hasVerticalCombination()
+				|| hasHorizontalCombination());
 	}
 
 	public void setSimian(boolean simian) {
@@ -76,31 +74,40 @@ public class DNA implements Serializable {
 		return "DNA [Id=" + Id + ", dna=" + dna + ", simian=" + simian + "]";
 	}
 
-	public boolean hasMainDiagonalCombination() {
-		for (int j = 3; j < dna.size(); j++) {
-			for (int i = 3; i < dna.size(); i++) {
-				if ((dna.get(i).charAt(j) == dna.get(i - 1).charAt(j - 1))
-						&& (dna.get(i).charAt(j) == dna.get(i - 2).charAt(j - 2))
-						&& (dna.get(i).charAt(j) == dna.get(i - 3).charAt(j - 3)))
+	public boolean hasSecondDiagonalCombination() {
+		for (int i = 0; i < dna.size()-3; i++) {
+			for (int j = 3; j < dna.size(); j++) {
+				if ((dna.get(i).charAt(j) == dna.get(i + 1).charAt(j - 1))
+						&& (dna.get(i).charAt(j) == dna.get(i + 2).charAt(j - 2))
+						&& (dna.get(i).charAt(j) == dna.get(i + 3).charAt(j - 3))) {
+//					System.out.println(" hasMainDiagonalCombination(): " + dna.get(i ).charAt(j) + " "
+//							+ dna.get(i + 1).charAt(j - 1) + " " + dna.get(i + 2).charAt(j - 2) + " " 
+//							+ dna.get(i+3).charAt(j-3) + " AQUI?");
 					return true;
+				}
+
 			}
 		}
 		return false;
 	}
 
-	public boolean hasSecondDiagonalCombination() {
-		for (int j = 0; j < dna.size() - 3; j++) {
-			for (int i = 0; i < dna.size() - 3; i++) {
+	public boolean hasMainDiagonalCombination() {
+		for (int i = 0; i < dna.size() - 3; i++) {
+			for (int j = 0; j < dna.size() - 3; j++) {
 				if ((dna.get(i).charAt(j) == dna.get(i + 1).charAt(j + 1))
 						&& (dna.get(i).charAt(j) == dna.get(i + 2).charAt(j + 2))
-						&& (dna.get(i).charAt(j) == dna.get(i + 3).charAt(j + 3)))
+						&& (dna.get(i).charAt(j) == dna.get(i + 3).charAt(j + 3))) {
+//					System.out.println(" hasSecondDiagonalCombination(): " + dna.get(i).charAt(j) + " "
+//							+ dna.get(i + 1).charAt(j + 1) + " " + dna.get(i + 2).charAt(j + 2) + " "
+//							+ dna.get(i + 3).charAt(j + 3));
 					return true;
+				}
 			}
 		}
 		return false;
 	}
 
-	public boolean hasHorizontalCombination() {
+	public boolean hasVerticalCombination() {
 		for (int j = 0; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
 				if ((dna.get(i).charAt(j) == dna.get(i - 1).charAt(j))
@@ -113,7 +120,7 @@ public class DNA implements Serializable {
 		return false;
 	}
 
-	public boolean hasVerticalCombination() {
+	public boolean hasHorizontalCombination() {
 		for (int j = 0; j < dna.size(); j++) {
 			for (int i = 3; i < dna.size(); i++) {
 				if ((dna.get(j).charAt(i) == dna.get(j).charAt(i - 1))

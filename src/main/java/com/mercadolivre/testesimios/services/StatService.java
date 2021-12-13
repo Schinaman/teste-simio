@@ -34,8 +34,8 @@ public class StatService {
 		stat.setCount_mutant_dna(0);
 		stat.setCount_human_dna(0);
 		for(DNA dna : dnas){
-			if (dna.isSimian() == true) stat.setCount_mutant_dna(stat.getCount_mutant_dna()+1);
-			if (dna.isSimian() == false) stat.setCount_human_dna(stat.getCount_human_dna()+1);;
+			if (dna.isSimian()) stat.setCount_mutant_dna(stat.getCount_mutant_dna()+1);
+			if (!dna.isSimian() == false) stat.setCount_human_dna(stat.getCount_human_dna()+1);;
 			}	
 		stat.setRatio((double)stat.getCount_mutant_dna()/stat.getCount_human_dna());
 		repository.save(stat);

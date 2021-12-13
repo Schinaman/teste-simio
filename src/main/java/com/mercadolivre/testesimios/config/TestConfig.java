@@ -21,22 +21,23 @@ public class TestConfig implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception { 
-		//DNA d1 = new DNA();
-		String[] a = new String[] {"TAGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
-		List<String> list = new ArrayList<>();
-		list = Arrays.asList(a);
-		System.out.println(list.size()  +"XXXX" + list);
-		
-		DNA d1 = new DNA(list);
-		DNA d2 = new DNA(Arrays.asList(a));
-		DNA d3 = new DNA(Arrays.asList(a));
-		DNA d4 = new DNA(Arrays.asList(a));
 		
 		
-		dnaRepository.saveAll(Arrays.asList(d1,d2,d3,d4));
-		System.out.println(list.size());
-		System.out.println(list.get(0).length());
-		System.out.println(d1);
+//		String[] a = new String[] {"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"};
+//		List<String> list = new ArrayList<>();
+//		list = Arrays.asList(a);
+//		System.out.println(list.size()  +"XXXX" + list);
+//		
+//		DNA d1 = new DNA(list);
+//		DNA d2 = new DNA(Arrays.asList(a));
+//		DNA d3 = new DNA(Arrays.asList(a));
+//		DNA d4 = new DNA(Arrays.asList(a));
+//		
+//		
+//		dnaRepository.saveAll(Arrays.asList(d1,d2,d3,d4));
+//		System.out.println(list.size());
+//		System.out.println(list.get(0).length());
+//		System.out.println(d1);
 		
 		
 		
