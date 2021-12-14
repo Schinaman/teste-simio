@@ -29,7 +29,7 @@ Body format follows the example bellow: <br>
 ```
 
 In case of success the response will return "HTTP 200-OK" status. <br>
-The Hibernate, JPA implementation persists all the data on Postgrees database hosted on heroku. <br>
+The Hibernate, JPA implementation persists all the data on Postgres database hosted on heroku. <br>
 
 <br>
 GET <br>
