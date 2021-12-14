@@ -15,7 +15,7 @@ Any of those exceptions will return: "HTTP 403-FORBIDDEN" status.
 
 ## Endpoints
 
-POST <br>
+**POST** <br>
 Responsible for send the genetic sequence: <br>
 https://testesimian-meli.herokuapp.com/simian
 
@@ -32,7 +32,8 @@ In case of success the response will return "HTTP 200-OK" status. <br>
 The Hibernate, JPA implementation persists all the data on Postgres database hosted on heroku. <br>
 
 <br>
-GET <br>
+
+__GET__ <br>
 The GET method return statistics based on database. <br>
 https://testesimian-meli.herokuapp.com/stats <br>
 
@@ -49,9 +50,9 @@ Response example:
 
 ## Test environment
 
-Change to test profile in the "application.properties" file. <br>
+Change profile to "test" in the "application.properties" file. <br>
 Test environment database uses Spring Boot - H2 Database <br> 
-It can be accessed in the following URI: <br>
+It can be accessed from the following URI: <br>
 //localhost:&#60;port&#62;/h2-console/
 
 
