@@ -1,5 +1,5 @@
 
-# Teste Símios - Mercado Livre
+# Test Símio
 
 ## Overview
 The project runs through an RESTful API and checks whether a DNA sequence belongs to a human or a simian. <br>
